@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Counter with Color Change</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        body {
+            font-family: serif;
+        }
+        .counter {
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+
+        
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        
+        function Greeting(props) {
+            return <h1> 6/9 </h1>;
+        }
+
+        
+        function NestedComponent() {
+            return (
+                <div>
+                    <h2>Tarea 4 de Diseño de sofware</h2>
+                    <Greeting name=":3" />
+                </div>
+            );
+        }
+
+        function Counter() {
+            const [count, setCount] = React.useState(0);
+            const [color, setColor] = React.useState('#000000'); 
+
+            const handleClick = (change) => {
+                setCount(count + change);
+                setColor(getRandomColor()); 
+            };
+
+            return (
+                <div className="counter">
+                    <h2 style={{ color: color }}>Numeros de colores :) : {count}</h2>
+                    <button onClick={() => handleClick(1)}>+1</button>
+                    <button onClick={() => handleClick(-1)}>−1</button>
+                </div>
+            );
+        }
+
+        
+        function App() {
+            return (
+                <div>
+                    <NestedComponent />
+                    <Counter />
+                </div>
+            );
+        }
+
+        
+        ReactDOM.render(<App />, document.getElementById('app'));
+
+    </script>
+</body>
+</html>
